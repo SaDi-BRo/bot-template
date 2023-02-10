@@ -1,7 +1,7 @@
-import { Context } from '../package/index.ts';
+import { MyContext } from '../core/bot.ts';
 
-const helpCommand = (ctx: Context) => {
-  ctx.reply("This is just a template bot, which's source code here!");
+const helpCommand = async (ctx: MyContext) => {
+  await ctx.reply(ctx.t('help'));
 };
 
 export { helpCommand };
