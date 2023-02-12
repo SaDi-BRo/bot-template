@@ -1,4 +1,4 @@
-import { Router } from '../package/index.ts';
+import { Router, hears } from '../package/index.ts';
 import { bot, MyContext } from '../core/bot.ts';
 import {
   settingsKeyboard,
@@ -10,24 +10,37 @@ const router = new Router((ctx: MyContext) => ctx.session.step);
 
 const settings = router.route('settings');
 
-settings.hears('⚙️ Settings', ctx => {
+settings.filter(hears('settingsButton'), ctx => {
   ctx.reply(ctx.t('settingsMessage'), {
     reply_markup: settingsKeyboard(ctx),
   });
 });
 
-settings.hears('Language', ctx => {
+settings.filter(hears('changeLanguageButton'), ctx => {
   ctx.reply(ctx.t('changeLanguageMessage'), {
     reply_markup: langKeyboard(ctx),
   });
 });
 
-settings.hears('🇺🇿 Uzbek', async ctx => {
-  await ctx.i18n.setLocale('uz');
-  ctx.reply('Changed uzbek');
+settings.filter(hears('backButton'), ctx => {
+  ctx.reply(ctx.t('startMessage'), { reply_markup: startKeyboard(ctx) });
 });
 
-settings.hears('🏴󠁧󠁢󠁥󠁮󠁧󠁿 English', async ctx => {
+settings.filter(hears('uzButton'), async ctx => {
+  await ctx.i18n.setLocale('uz');
+  ctx.reply(ctx.t('changedLanguageMessage'), {
+    reply_markup: startKeyboard(ctx),
+  });
+});
+
+settings.filter(hears('ruButton'), async ctx => {
+  await ctx.i18n.setLocale('ru');
+  ctx.reply(ctx.t('changedLanguageMessage'), {
+    reply_markup: startKeyboard(ctx),
+  });
+});
+
+settings.filter(hears('enButton'), async ctx => {
   await ctx.i18n.setLocale('en');
   ctx.reply(ctx.t('changedLanguageMessage'), {
     reply_markup: startKeyboard(ctx),

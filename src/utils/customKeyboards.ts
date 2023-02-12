@@ -11,7 +11,13 @@ const startKeyboard = (ctx: MyContext) =>
     .resized();
 
 const settingsKeyboard = (ctx: MyContext) =>
-  new Keyboard().text(ctx.t('changeLanguageButton')).row().oneTime().resized();
+  new Keyboard()
+    .text(ctx.t('changeLanguageButton'))
+    .row()
+    .text(ctx.t('backButton'))
+    .row()
+    .oneTime()
+    .resized();
 
 const langKeyboard = (ctx: MyContext) =>
   new Keyboard()

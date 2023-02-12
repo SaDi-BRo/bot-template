@@ -12,7 +12,7 @@ export type {
 } from 'https://deno.land/x/grammy@v1.13.1/mod.ts';
 
 // grammY I18n
-export { I18n } from 'https://deno.land/x/grammy_i18n@v1.0.1/mod.ts';
+export { I18n, hears } from 'https://deno.land/x/grammy_i18n@v1.0.1/mod.ts';
 export type { I18nFlavor } from 'https://deno.land/x/grammy_i18n@v1.0.1/mod.ts';
 
 // grammY Router

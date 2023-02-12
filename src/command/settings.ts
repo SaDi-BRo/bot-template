@@ -1,5 +1,6 @@
 import { bot } from '../core/bot.ts';
 import { settingsCommand } from '../controller/index.ts';
+import { hears } from '../package/index.ts';
 
-bot.hears('⚙️ Settings', settingsCommand);
-bot.hears('⚙️ Settings uz', settingsCommand);
+bot.filter(hears('settingsButton'), settingsCommand);
+bot.command('settings', settingsCommand);
