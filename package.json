@@ -1,0 +1,20 @@
+{
+  "name": "bot-template",
+  "version": "1.0.0",
+  "description": "a template for bot to make faster",
+  "homepage": "https://github.com/SaDi-BRo/bot-template#readme",
+  "bugs": {
+    "url": "https://github.com/SaDi-BRo/bot-template/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SaDi-BRo/bot-template.git"
+  },
+  "license": "ISC",
+  "author": "SaDi",
+  "type": "commonjs",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
