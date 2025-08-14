@@ -5,13 +5,13 @@ const { hears } = require('@grammyjs/i18n');
 
 const router = new Router(ctx => ctx.session.step);
 
-const settings = router.route('idle');
+const backBtn = router.route('idle');
 
-settings.filter(hears('settingsBtn'), async ctx => {
+backBtn.filter(hears('back'), async ctx => {
   const keyboard = new Keyboard()
-    .text(ctx.t('changeLanguage'))
+    .text(ctx.t('settingsBtn'))
     .row()
-    .text(ctx.t('back'))
+    .text(ctx.t('helpBtn'))
     .row()
     .resized()
     .oneTime();

@@ -1,7 +1,0 @@
-greeting: Hello, welcome to our bot!
-help: The bot can help you with various tasks. Use /start to begin.
-settings: Here you can adjust your preferences.
-
-homeButtons:
-  help: Help❔
-  settings: Settings⚙️

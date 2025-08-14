@@ -1,16 +1,11 @@
-const telegraf = require('telegraf');
-const TelegrafI18n = require('telegraf-i18n');
+const { I18n } = require('@grammyjs/i18n');
 const path = require('path');
-const bot = require('./bot');
+const { bot } = require('./bot');
 
-const i18n = new TelegrafI18n({
-  defaultLanguage: 'en',
-  allowMissing: false, // Default true
+const i18n = new I18n({
+  defaultLocale: 'en',
   directory: path.resolve(__dirname, '../locales'),
-  sessionName: 'session',
+  useSession: true,
 });
 
-bot.use(i18n.middleware());
-bot.use(telegraf.session());
-
-module.exports = i18n;
+bot.use(i18n);

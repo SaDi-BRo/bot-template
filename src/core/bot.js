@@ -1,13 +1,15 @@
 const express = require('express');
-const { Telegraf } = require('telegraf');
+const { Bot, session } = require('grammy');
 require('dotenv').config();
 
 if (!process.env.BOT_TOKEN) {
   throw new Error('BOT_TOKEN is not defined in the environment variables');
 }
 
-const bot = new Telegraf(process.env.BOT_TOKEN);
+const bot = new Bot(process.env.BOT_TOKEN);
 const app = express();
+
+bot.use(session({ initial: () => ({ step: 'idle' }) }));
 app.use(express.json());
 
 app.post('/webhook', (req, res) => {
@@ -22,7 +24,7 @@ if (!process.env.ENVIRONMENT) {
 }
 
 if (process.env.ENVIRONMENT === 'development') {
-  bot.launch();
+  bot.start();
 }
 
 if (process.env.ENVIRONMENT === 'production') {
@@ -31,10 +33,8 @@ if (process.env.ENVIRONMENT === 'production') {
   }
   app.listen(3000, async () => {
     console.log('Server is running on port 3000');
-    await bot.telegram.setWebhook(
-      'https://simple-game-bot.onrender.com/webhook'
-    );
+    await bot.api.setWebhook('https://simple-game-bot.onrender.com/webhook');
   });
 }
 
-module.exports = bot;
+module.exports = { bot };
